@@ -44,15 +44,15 @@
 
 ## Perceptions
 
-*  loudness
+* loudness
 
-*  sound of nature
+* sound of nature
 
-*  bothering others
+* bothering others
 
-*  privacy
+* privacy
 
-*  silence
+* silence
 
 
 ## Trade-offs
@@ -98,13 +98,3 @@
 
 
 
-
-## Others 
-
-*  feeling comfortable
-
-*  expectations become certainties
-
-*  comfort is a goal in itself
-
-*  cognition

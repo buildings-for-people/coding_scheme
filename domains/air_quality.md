@@ -73,12 +73,6 @@
 
 *  odours
 
-People seem to distinguish between different sources:
-
-* odours from neighbours
-* odours from common spaces
-* odours from the city
-* internal odours 
 
 
 ## Trade-offs
@@ -117,13 +111,3 @@ People seem to distinguish between different sources:
 
 
 
-
-## Others 
-
-*  feeling comfortable
-
-*  expectations become certainties
-
-*  comfort is a goal in itself
-
-*  cognition

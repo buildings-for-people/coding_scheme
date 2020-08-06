@@ -4,7 +4,7 @@ Comfort is a subjective experience, and therefore, the starting
 point for the generation of comfort is the individual.
 
 The process in which the [feeling of comfort](layer=comfort) is
-generated starts with a person's internal elements. Together with [Objective Climatic Factors](layer=objective_climatic_factors) and [Environmental Cues](layer=environmental_cues),
+generated starts with a person's internal elements. Together with [Objective Climatic Factors](layer=objective_indoor_climatic_factors) and [Environmental Cues](layer=environmental_cues),
 Internal Elements conform what is known as the "Situation". Namely, 
 the group of relevant elements, both physical and psychological, that
 will determine the [feeling of comfort](layer=comfort). 

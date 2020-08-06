@@ -1,6 +1,6 @@
 # Trade-offs 
 
-Just like [expectations](layer=expectations) reflect the fact 
+Just like [expected outcomes](layer=expected_outcomes) reflect the fact 
 that people make decisions based on the future, trade-offs 
 reflect the fact that people's current 
 [perceptions](layer=perceptions) are the result of decisions

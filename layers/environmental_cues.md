@@ -3,7 +3,7 @@
 Environmental cues are all those physical elements of the 
 environment that, even if hard or impossible to quantify, are 
 used by people both consciously and unconsciously. Together with 
-[Objective Climatic Factors](layer=objective_climatic_factors),
+[Objective Climatic Factors](layer=objective_indoor_climatic_factors),
 Environmental cues contribute to the mixture of inputs used by the brain to 
 generate the [feeling of comfort](layer=comfort).
 

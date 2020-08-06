@@ -90,10 +90,3 @@
 
 * physical wellbeing
 
-
-## Others 
-
-### feeling comfortable
-### expectations become certainties
-### comfort is a goal in itself
-### cognition
