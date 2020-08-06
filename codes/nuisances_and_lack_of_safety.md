@@ -1,4 +1,4 @@
-### nuisances and lack of safety
+# nuisances and lack of safety
 
 Just as in the case of [utility bills](code=utility_bills), safety
 can be a priority for people. Thus, all appliances and systems in their 

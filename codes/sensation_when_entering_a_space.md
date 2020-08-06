@@ -1,4 +1,4 @@
-### sensation when entering a space
+# sensation when entering a space
 
 First impressions count. Even if they are brief, it is possible 
 that the short experience of entering a comfortable space leaves 

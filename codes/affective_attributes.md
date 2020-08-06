@@ -1,4 +1,4 @@
-### affective attributes
+# affective attributes
 
 The word warmness, especially in Spanish, seems to be strongly 
 associated with coziness. Thus, within their descriptions of a 

@@ -1,4 +1,4 @@
-### thermal sensation
+# thermal sensation
 
 Thermal sensation is the name that has been historically
 given to the perception of how cold or hot is the space.

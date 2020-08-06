@@ -1,4 +1,4 @@
-### energy efficiency
+# energy efficiency
 
 Heating, cooling, lighting and ventilating 
 all consume energy. Some people expressed their concern with regards

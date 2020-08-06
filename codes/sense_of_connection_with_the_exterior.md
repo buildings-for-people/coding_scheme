@@ -1,4 +1,4 @@
-### sense of connection with the exterior
+# sense of connection with the exterior
 
 Having daylight allows people to connect with the exterior.
 It helps them feel how the time passes and whether it is daytime

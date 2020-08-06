@@ -1,4 +1,4 @@
-### bed temperature
+# bed temperature
 
 Sleeping is one of the things people do at home. They want to
 sleep in a bed with an appropriate temperature. If it is cold, 

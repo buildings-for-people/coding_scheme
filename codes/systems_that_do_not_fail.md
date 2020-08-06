@@ -1,4 +1,4 @@
-### systems that do not fail
+# systems that do not fail
 
 Hopefully, homes should be robust enough to 
 consistently offer comfortable spaces for people. This implies, 

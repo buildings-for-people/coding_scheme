@@ -1,4 +1,4 @@
-### comfort everywhere and all the time
+# comfort everywhere and all the time
 
 People want to be comfortable all the time, not just now, but also in the 
 future, even if they move. However, are sensible and only expect comfort when 

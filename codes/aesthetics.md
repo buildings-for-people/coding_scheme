@@ -1,4 +1,4 @@
-### aesthetics
+# aesthetics
 
 Some systems, materials, appliances or design choices are beneficial
 for the performance of the house, but are just not aesthetically 

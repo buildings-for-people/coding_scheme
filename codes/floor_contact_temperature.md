@@ -1,4 +1,4 @@
-### floor contact temperature
+# floor contact temperature
 
 The floor contact temperature seems to be an important 
 determinant of the perception of thermal comfort in dwellings. 

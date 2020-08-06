@@ -1,5 +1,5 @@
 
-### daylight sufficiency
+# daylight sufficiency
 
 A space will be perceived as "sufficiently illuminated" when it has just 
 enough natural light to somehow warm it up and allow operating without

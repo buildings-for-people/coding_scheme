@@ -1,4 +1,4 @@
-### passive design
+# passive design
 
 Having heating, lighting, cooling, and ventilation systems that 
 are simple to use, effective, cheap to run, and reliable is a good thing. But

@@ -1,4 +1,4 @@
-### loss of views
+# loss of views
 
 Views are not always in the direction that maximizes
 daylight. Thus, people sometimes need to choose one or the 

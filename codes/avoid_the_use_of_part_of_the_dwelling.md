@@ -1,4 +1,4 @@
-### avoid the use of part of the dwelling
+# avoid the use of part of the dwelling
 
 Sometimes, certain areas of people's homes are so uncomfortable that
 people would rather avoid them. In these cases, people need to choose 

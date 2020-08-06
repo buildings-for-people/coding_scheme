@@ -1,4 +1,4 @@
-### glare
+# glare
 
 Glare is the difficulty for seeing, strongly associated to 
 excessive contrast or brightness. While quite important in 

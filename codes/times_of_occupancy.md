@@ -1,4 +1,4 @@
-### times of occupancy
+# times of occupancy
 
 The experience of people in a certain dwelling might be 
 dramatically different depending on their routines and 

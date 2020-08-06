@@ -1,4 +1,4 @@
-### direction of the light
+# direction of the light
 
 While it is not entirely clear why, the slope of the natural
 light entering the space might matter. Specifically, respondents 

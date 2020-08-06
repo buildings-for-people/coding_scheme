@@ -1,4 +1,4 @@
-### availability of windows and skylights
+# availability of windows and skylights
 
 Windows and skylights are probably the most common and intuitive 
 way of letting daylight in. However, not all windows and all

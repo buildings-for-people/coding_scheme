@@ -1,4 +1,4 @@
-### feeling of confinement
+# feeling of confinement
 
 Some people reported that naturally illuminated spaces
 feel less enclosed. It is possible that this perception is related to the 

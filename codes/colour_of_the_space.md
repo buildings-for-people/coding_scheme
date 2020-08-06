@@ -1,4 +1,4 @@
-### colour of the space
+# colour of the space
 
 Daylight will penetrate more or less into the space depending on
 the colour (or, more specifically, the reflectivity of the materials) in 

@@ -1,4 +1,4 @@
-### household composition
+# household composition
 
 The feeling of comfort is a state of the mind, and thus 
 it is not limited to physiological sensations or even

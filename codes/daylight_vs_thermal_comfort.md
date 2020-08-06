@@ -1,5 +1,5 @@
 
-### daylight vs thermal comfort
+# daylight vs thermal comfort
 
 Increasing windows to maximize daylight has the consequence
 of reducing thermal insulation and thus increasing the chances

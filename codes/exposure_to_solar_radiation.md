@@ -1,4 +1,4 @@
-### exposure to solar radiation
+# exposure to solar radiation
 
 Even if the air might be at a certain temperature, being exposed
 to solar radiation can significantly affect people's thermal 

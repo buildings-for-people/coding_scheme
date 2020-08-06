@@ -1,5 +1,5 @@
 
-### cleanliness of the space
+# cleanliness of the space
 
 Respondents often linked the amount of daylight in a space, 
 as well as its temperature, to the perception of cleanliness 

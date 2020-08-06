@@ -1,4 +1,4 @@
-### dwelling typology
+# dwelling typology
 
 Depending on whether people are looking for, or live in,
 an apartment, detached or attached house, or other 

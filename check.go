@@ -6,7 +6,14 @@ import (
 	"io/ioutil"
 	"os"
 	"strings"
+
+	"gitlab.com/golang-commonmark/markdown"
 )
+
+func formatDescription(d string) string {
+	md := markdown.New(markdown.XHTMLOutput(true))
+	return md.RenderToString([]byte(d))
+}
 
 func abort(filename string, line int, msg string) {
 	fmt.Println(fmt.Sprintf("FATAL ERROR [%s : ln %d]: %s", filename, line, msg))
@@ -71,7 +78,7 @@ func contains(slice []string, s string) bool {
 	return false
 }
 
-func checkContent(filename string, domains *[]string, layers *[]string, codes *[]string) {
+func checkDescription(filename string, domains *[]string, layers *[]string, codes *[]string) {
 	// Open file
 	file, err := os.Open(filename)
 	defer file.Close()
@@ -79,12 +86,32 @@ func checkContent(filename string, domains *[]string, layers *[]string, codes *[
 		abort("check.go", 75, err.Error())
 	}
 
+	d := ""
 	// scan all lines
 	lineCount := 0
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		lineCount++
 		ln := strings.TrimSpace(scanner.Text())
+
+		if strings.HasPrefix(ln, "#") {
+			// A title... check it matches the name of the file
+			ln = ln[2:]
+			ln = strings.TrimSpace(ln)
+
+			expectedFileName := toFilename(ln)
+			expectedFileName = expectedFileName[0 : len(expectedFileName)-3]
+
+			// compare name of file with that line.
+			aux := strings.Split(ln, "/")
+			justName := aux[len(aux)-1]
+			if expectedFileName != toID(justName) {
+				abort(filename, lineCount, fmt.Sprintf("Title ('%s') does not match filename ('%s')", expectedFileName, justName))
+			}
+			continue
+		}
+
+		d += ln
 
 		// if this is true, we are expecting some sort of link.
 		openSquare := strings.Index(ln, "[")
@@ -139,6 +166,36 @@ func checkContent(filename string, domains *[]string, layers *[]string, codes *[
 			}
 		}
 	}
+	if lineCount < 1 {
+		warn(fmt.Sprintf("File '%s' appears to be empty.", filename))
+	}
+	// IF WE WANT TO CREATE NEW FILES
+
+	// Now, process...
+	filename = "./html/" + filename
+	dirs := strings.Split(filename, "/")
+
+	baseDir := "."
+	for _, dir := range dirs {
+		baseDir = fmt.Sprintf("%s/%s", baseDir, dir)
+		if strings.HasSuffix(dir, ".md") {
+			baseDir = baseDir[0 : len(baseDir)-3]
+
+			// Write the file.
+			html := formatDescription(d)
+
+			err = ioutil.WriteFile(fmt.Sprintf("%s.html", baseDir), []byte(html), 0644)
+			if err != nil {
+				abort("check.go", 188, err.Error())
+			}
+
+		} else {
+			if _, err := os.Stat(baseDir); os.IsNotExist(err) {
+				os.Mkdir(baseDir, 0777)
+			}
+		}
+	}
+
 }
 
 func checkDomainFile(filename string, foundLayers *[]string, foundCodes *[]string) {
@@ -256,7 +313,7 @@ func main() {
 		}
 
 		// check content of the file
-		checkContent(fmt.Sprintf("./codes/%s", filename), &domains, &foundLayers, &foundCodes)
+		checkDescription(fmt.Sprintf("./codes/%s", filename), &domains, &foundLayers, &foundCodes)
 	}
 
 	// Now, the same but with layers
@@ -274,7 +331,7 @@ func main() {
 			warn(fmt.Sprintf("File './layers/%s' was not expected (name '%s')", filename, layerName))
 		}
 
-		checkContent(fmt.Sprintf("./layers/%s", filename), &domains, &foundLayers, &foundCodes)
+		checkDescription(fmt.Sprintf("./layers/%s", filename), &domains, &foundLayers, &foundCodes)
 	}
 
 }

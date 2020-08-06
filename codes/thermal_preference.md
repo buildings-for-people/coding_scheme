@@ -1,4 +1,4 @@
-### thermal preference
+# thermal preference
 
 While people tend to agree about the range of temperatures
 that are considered acceptable (i.e. somewhere around

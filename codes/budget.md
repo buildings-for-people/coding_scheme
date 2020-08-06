@@ -1,4 +1,4 @@
-### budget
+# budget
 
 While people do want to be comfortable, they will not necessarily
 spend all the money necessary to make their homes comfortable. The 

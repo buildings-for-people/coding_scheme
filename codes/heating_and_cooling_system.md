@@ -1,4 +1,4 @@
-### heating and cooling system
+# heating and cooling system
 
 In areas that are too cold or hot, having a mechanical system
 that does not rely on the weather might be the only option 
