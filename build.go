@@ -329,7 +329,7 @@ func main() {
 
 		// check content of the file
 		html := checkDescription(fmt.Sprintf("./codes/%s", filename), &domains, &foundLayers, &foundCodes)
-		codesDescriptions[codeName] = html
+		codesDescriptions[toID(codeName)] = html
 	}
 	// Print the codes description as JSON
 	j, e = json.Marshal(codesDescriptions)
@@ -359,7 +359,8 @@ func main() {
 		}
 
 		html := checkDescription(fmt.Sprintf("./layers/%s", filename), &domains, &foundLayers, &foundCodes)
-		layersDescriptions[layerName] = html
+		layersDescriptions[toID(layerName)] = html
+
 	}
 
 	// Print the layer description as JSON
