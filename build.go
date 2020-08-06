@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"os"
@@ -78,12 +79,12 @@ func contains(slice []string, s string) bool {
 	return false
 }
 
-func checkDescription(filename string, domains *[]string, layers *[]string, codes *[]string) {
+func checkDescription(filename string, domains *[]string, layers *[]string, codes *[]string) string {
 	// Open file
 	file, err := os.Open(filename)
 	defer file.Close()
 	if err != nil {
-		abort("check.go", 75, err.Error())
+		abort("build.go", 75, err.Error())
 	}
 
 	d := ""
@@ -169,36 +170,12 @@ func checkDescription(filename string, domains *[]string, layers *[]string, code
 	if lineCount < 1 {
 		warn(fmt.Sprintf("File '%s' appears to be empty.", filename))
 	}
-	// IF WE WANT TO CREATE NEW FILES
 
-	// Now, process...
-	filename = "./html/" + filename
-	dirs := strings.Split(filename, "/")
-
-	baseDir := "."
-	for _, dir := range dirs {
-		baseDir = fmt.Sprintf("%s/%s", baseDir, dir)
-		if strings.HasSuffix(dir, ".md") {
-			baseDir = baseDir[0 : len(baseDir)-3]
-
-			// Write the file.
-			html := formatDescription(d)
-
-			err = ioutil.WriteFile(fmt.Sprintf("%s.html", baseDir), []byte(html), 0644)
-			if err != nil {
-				abort("check.go", 188, err.Error())
-			}
-
-		} else {
-			if _, err := os.Stat(baseDir); os.IsNotExist(err) {
-				os.Mkdir(baseDir, 0777)
-			}
-		}
-	}
+	return formatDescription(d)
 
 }
 
-func checkDomainFile(filename string, foundLayers *[]string, foundCodes *[]string) {
+func checkDomainFile(filename string, foundLayers *[]string, foundCodes *[]string, scheme *scheme) {
 
 	warnedCodes := make([]string, 0)
 	warnedLayers := make([]string, 0)
@@ -207,8 +184,11 @@ func checkDomainFile(filename string, foundLayers *[]string, foundCodes *[]strin
 	domainFile, err := os.Open(fmt.Sprintf("./domains/%s", filename))
 	defer domainFile.Close()
 	if err != nil {
-		abort("check.go", 61, err.Error())
+		abort("build.go", 61, err.Error())
 	}
+
+	domainName := filenameToTxt(filename)
+	currentLayer := ""
 
 	// scan all lines
 	lineCount := 0
@@ -250,6 +230,9 @@ func checkDomainFile(filename string, foundLayers *[]string, foundCodes *[]strin
 				warn(fmt.Sprintf("File '%s' is not there", layerFileName))
 			}
 
+			// Update current layer name
+			currentLayer = ln
+
 		} else if strings.HasPrefix(ln, "* ") {
 			// Code...
 			ln = ln[2:]
@@ -267,6 +250,18 @@ func checkDomainFile(filename string, foundLayers *[]string, foundCodes *[]strin
 				warn(fmt.Sprintf("File '%s' is not there", codeFileName))
 			}
 
+			// If all good, allocate the code.
+			if currentLayer == "" {
+				abort(filename, lineCount, fmt.Sprintf("Code '%s' does not appear to be allocated to a layer", ln))
+			}
+			layer, wasThere := scheme.getLayer(currentLayer)
+			if !wasThere {
+				warn(fmt.Sprintf("Allocating layer '%s', found in domain '%s'... it should have been there already", currentLayer, domainName))
+			}
+			code, _ := layer.getCode(ln)
+
+			// Should we check if it is there?
+			code.Domains = append(code.Domains, domainName)
 		} else {
 			abort(filename, lineCount, fmt.Sprintf("Unexpected content '%s'", ln))
 		}
@@ -281,27 +276,47 @@ func main() {
 	foundLayers := make([]string, 0)
 	foundCodes := make([]string, 0)
 
+	scheme := newScheme()
+	codesDescriptions := make(map[string]string)
+	layersDescriptions := make(map[string]string)
+
 	// Go through each domain, checking that
 	// files exist (warning if they do not)
 	// and taking note of all the layers and codes
 	// found in such files
 	domainFiles, err := listMDFiles("./domains")
 	if err != nil {
-		abort("check.go", 142, err.Error())
+		abort("build.go", 142, err.Error())
 	}
 
 	for _, filename := range domainFiles {
 		if !contains(domains, filenameToTxt(filename)) {
 			warn(fmt.Sprintf("File './%s' was not expected", filename))
 		}
-		checkDomainFile(filename, &foundLayers, &foundCodes)
+		checkDomainFile(filename, &foundLayers, &foundCodes, &scheme)
+	}
+	// Create output directory if it does not exist.
+	outdir := "./dist"
+	if _, err := os.Stat(outdir); os.IsNotExist(err) {
+		os.Mkdir(outdir, 0700)
+	}
+
+	// print the scheme as JSON
+	j, e := json.Marshal(scheme)
+	if e != nil {
+		abort("build.go", 298, e.Error())
+	}
+	schemeFile := fmt.Sprintf("%s/scheme.json", outdir)
+	e = ioutil.WriteFile(schemeFile, j, 0644)
+	if err != nil {
+		abort("build.go", 309, e.Error())
 	}
 
 	// Go through codes, checking that there are no files
 	// that do not belong.
 	codeFiles, err := listMDFiles("./codes")
 	if err != nil {
-		abort("check.go", 163, err.Error())
+		abort("build.go", 163, err.Error())
 	}
 
 	for _, filename := range codeFiles {
@@ -313,14 +328,26 @@ func main() {
 		}
 
 		// check content of the file
-		checkDescription(fmt.Sprintf("./codes/%s", filename), &domains, &foundLayers, &foundCodes)
+		html := checkDescription(fmt.Sprintf("./codes/%s", filename), &domains, &foundLayers, &foundCodes)
+		codesDescriptions[codeName] = html
+	}
+	// Print the codes description as JSON
+	j, e = json.Marshal(codesDescriptions)
+	if e != nil {
+		abort("build.go", 337, e.Error())
+	}
+	codesFile := fmt.Sprintf("%s/codes.json", outdir)
+	e = ioutil.WriteFile(codesFile, j, 0644)
+	if err != nil {
+		abort("build.go", 342, e.Error())
 	}
 
+	////////////
 	// Now, the same but with layers
-
+	///////////
 	layerFiles, err := listMDFiles("./layers")
 	if err != nil {
-		abort("check.go", 181, err.Error())
+		abort("build.go", 181, err.Error())
 	}
 
 	for _, filename := range layerFiles {
@@ -331,7 +358,19 @@ func main() {
 			warn(fmt.Sprintf("File './layers/%s' was not expected (name '%s')", filename, layerName))
 		}
 
-		checkDescription(fmt.Sprintf("./layers/%s", filename), &domains, &foundLayers, &foundCodes)
+		html := checkDescription(fmt.Sprintf("./layers/%s", filename), &domains, &foundLayers, &foundCodes)
+		layersDescriptions[layerName] = html
+	}
+
+	// Print the layer description as JSON
+	j, e = json.Marshal(layersDescriptions)
+	if e != nil {
+		abort("build.go", 337, e.Error())
+	}
+	layersFile := fmt.Sprintf("%s/layers.json", outdir)
+	e = ioutil.WriteFile(layersFile, j, 0644)
+	if err != nil {
+		abort("build.go", 374, e.Error())
 	}
 
 }
