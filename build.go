@@ -84,7 +84,7 @@ func checkDescription(filename string, domains *[]string, layers *[]string, code
 	file, err := os.Open(filename)
 	defer file.Close()
 	if err != nil {
-		abort("build.go", 75, err.Error())
+		abort("build.go", 87, err.Error())
 	}
 
 	d := ""
@@ -112,7 +112,7 @@ func checkDescription(filename string, domains *[]string, layers *[]string, code
 			continue
 		}
 
-		d += ln
+		d += (ln + "\n")
 
 		// if this is true, we are expecting some sort of link.
 		openSquare := strings.Index(ln, "[")
@@ -184,7 +184,7 @@ func checkDomainFile(filename string, foundLayers *[]string, foundCodes *[]strin
 	domainFile, err := os.Open(fmt.Sprintf("./domains/%s", filename))
 	defer domainFile.Close()
 	if err != nil {
-		abort("build.go", 61, err.Error())
+		abort("build.go", 187, err.Error())
 	}
 
 	domainName := filenameToTxt(filename)
@@ -286,7 +286,7 @@ func main() {
 	// found in such files
 	domainFiles, err := listMDFiles("./domains")
 	if err != nil {
-		abort("build.go", 142, err.Error())
+		abort("build.go", 289, err.Error())
 	}
 
 	for _, filename := range domainFiles {
@@ -304,12 +304,12 @@ func main() {
 	// print the scheme as JSON
 	j, e := json.Marshal(scheme)
 	if e != nil {
-		abort("build.go", 298, e.Error())
+		abort("build.go", 307, e.Error())
 	}
 	schemeFile := fmt.Sprintf("%s/scheme.json", outdir)
 	e = ioutil.WriteFile(schemeFile, j, 0644)
 	if err != nil {
-		abort("build.go", 309, e.Error())
+		abort("build.go", 312, e.Error())
 	}
 
 	// Go through codes, checking that there are no files
@@ -347,7 +347,7 @@ func main() {
 	///////////
 	layerFiles, err := listMDFiles("./layers")
 	if err != nil {
-		abort("build.go", 181, err.Error())
+		abort("build.go", 350, err.Error())
 	}
 
 	for _, filename := range layerFiles {
@@ -366,7 +366,7 @@ func main() {
 	// Print the layer description as JSON
 	j, e = json.Marshal(layersDescriptions)
 	if e != nil {
-		abort("build.go", 337, e.Error())
+		abort("build.go", 369, e.Error())
 	}
 	layersFile := fmt.Sprintf("%s/layers.json", outdir)
 	e = ioutil.WriteFile(layersFile, j, 0644)
