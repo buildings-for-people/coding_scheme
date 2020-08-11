@@ -114,7 +114,7 @@ func checkDescription(filename string, domains *[]string, layers *[]string, code
 
 		d += (ln + "\n")
 
-		// if this is true, we are expecting some sort of link.
+		// See if we are expecting some sort of link.
 		openSquare := strings.Index(ln, "[")
 		if openSquare >= 0 {
 			// remove anything before the square bracket... the link
@@ -146,18 +146,18 @@ func checkDescription(filename string, domains *[]string, layers *[]string, code
 				if strings.HasPrefix(component, "layer=") {
 					layer := component[6:]
 					if !contains(*layers, idToTxt(layer)) {
-						warn(fmt.Sprintf("Link leading to inexistent layer... File '%s' line %d, leading to '%s'", filename, lineCount, layer))
+						abort("build.go", 149, fmt.Sprintf("Link leading to inexistent layer... File '%s' line %d, leading to '%s'", filename, lineCount, layer))
 					}
 				} else if strings.HasPrefix(component, "code=") {
 					code := component[5:]
 					if !contains(*codes, idToTxt(code)) {
-						warn(fmt.Sprintf("Link leading to inexistent code... File '%s' line %d, leading to '%s'", filename, lineCount, code))
+						abort("build.go", 154, fmt.Sprintf("Link leading to inexistent code... File '%s' line %d, leading to '%s'", filename, lineCount, code))
 					}
 
 				} else if strings.HasPrefix(component, "domain=") {
 					domain := component[7:]
 					if !contains(*domains, idToTxt(domain)) {
-						warn(fmt.Sprintf("Link leading to inexistent domain... File '%s' line %d, leading to '%s'", filename, lineCount, domain))
+						abort("build.go", 160, fmt.Sprintf("Link leading to inexistent domain... File '%s' line %d, leading to '%s'", filename, lineCount, domain))
 					}
 				} else if strings.HasPrefix(component, "http") {
 					continue

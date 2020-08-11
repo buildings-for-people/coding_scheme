@@ -3,7 +3,7 @@
 
 While [perceptions](layer=perceptions) dwell in the present and
 [trade-offs](layer=trade-offs) dwell in the past,
-expectations reflect the fact that people make decisions based on 
+expected outcomes reflect the fact that people make decisions based on 
 the future as well. In this regard, they are constantly aware of 
 what might happen, estimating the level of comfort that they may feel
 in the future.
