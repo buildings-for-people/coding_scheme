@@ -11,8 +11,7 @@ will determine the [feeling of comfort](layer=comfort).
 
 Internal elements will shape the way in which individuals will appraise the 
 "Situation", developing [perceptions](layer=perceptions),
-[trade-offs](layer=trade-offs) and 
-[expected outcomes](layer=expected_outcomes).
+[trade-offs](layer=trade-offs) and [expected outcomes](layer=expected_outcomes).
 
 Different domains of comfort (e.g. Daylight, Acoustic, etc.) will depend
 on different characteristics of the person. Assessing the internal elements 

@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"os"
@@ -79,6 +80,69 @@ func contains(slice []string, s string) bool {
 	return false
 }
 
+func linksAreConsistent(ln string, domains *[]string, layers *[]string, codes *[]string) (bool, error) {
+
+	// See if we are expecting some sort of link.
+	// if not, then it IS consistent.
+	openSquare := strings.Index(ln, "[")
+	if openSquare < 0 {
+		return true, nil
+	}
+
+	// Otherwise, remove anything before the square bracket... the link
+	// might be in parentheses
+	ln = ln[openSquare+1:]
+	// Then, we expect to find a closeSquare
+	closeSquare := strings.Index(ln, "]")
+	if closeSquare < 0 {
+		return false, errors.New("expecting ']' in link")
+	}
+	// Then, an open round
+	openRound := strings.Index(ln, "(")
+	if openRound < 0 {
+		return false, errors.New("expecting '(' in link")
+	}
+
+	// Then, an closed round
+	closedRound := strings.Index(ln, ")")
+	if closedRound < 0 {
+		return false, errors.New("expecting ')' in link")
+	}
+
+	// If all that is there, check consistency of link.
+	afterLink := ln[closedRound+1:]
+	ln = ln[openRound+1 : closedRound]
+
+	object := strings.Split(ln, "&")
+
+	for _, component := range object {
+		if strings.HasPrefix(component, "layer=") {
+			layer := component[6:]
+			if !contains(*layers, idToTxt(layer)) {
+				return false, fmt.Errorf("link leading to inexistent layer '%s'", layer)
+			}
+		} else if strings.HasPrefix(component, "code=") {
+			code := component[5:]
+			if !contains(*codes, idToTxt(code)) {
+				return false, fmt.Errorf("link leading to inexistent code '%s'", code)
+			}
+
+		} else if strings.HasPrefix(component, "domain=") {
+			domain := component[7:]
+			if !contains(*domains, idToTxt(domain)) {
+				return false, fmt.Errorf("link leading to inexistent domain '%s'", domain)
+			}
+		} else if strings.HasPrefix(component, "http") {
+			continue
+		} else {
+			return false, fmt.Errorf("incorrectly formatted link '%s'", ln)
+		}
+	}
+
+	return linksAreConsistent(afterLink, domains, layers, codes)
+
+}
+
 func checkDescription(filename string, domains *[]string, layers *[]string, codes *[]string) string {
 	// Open file
 	file, err := os.Open(filename)
@@ -114,58 +178,12 @@ func checkDescription(filename string, domains *[]string, layers *[]string, code
 
 		d += (ln + "\n")
 
-		// See if we are expecting some sort of link.
-		openSquare := strings.Index(ln, "[")
-		if openSquare >= 0 {
-			// remove anything before the square bracket... the link
-			// might be in parentheses
-			ln = ln[openSquare+1:]
-			// Then, we expect to find a closeSquare
-			closeSquare := strings.Index(ln, "]")
-			if closeSquare < 0 {
-				abort(filename, lineCount, "Expecting ']' in link.")
-			}
-			// Then, an open round
-			openRound := strings.Index(ln, "(")
-			if openRound < 0 {
-				abort(filename, lineCount, "Expecting '(' in link.")
-			}
-
-			// Then, an closed round
-			closedRound := strings.Index(ln, ")")
-			if closedRound < 0 {
-				abort(filename, lineCount, "Expecting ')' in link.")
-			}
-
-			// If all that is there, check consistency of link.
-			ln = ln[openRound+1 : closedRound]
-
-			object := strings.Split(ln, "&")
-
-			for _, component := range object {
-				if strings.HasPrefix(component, "layer=") {
-					layer := component[6:]
-					if !contains(*layers, idToTxt(layer)) {
-						abort("build.go", 149, fmt.Sprintf("Link leading to inexistent layer... File '%s' line %d, leading to '%s'", filename, lineCount, layer))
-					}
-				} else if strings.HasPrefix(component, "code=") {
-					code := component[5:]
-					if !contains(*codes, idToTxt(code)) {
-						abort("build.go", 154, fmt.Sprintf("Link leading to inexistent code... File '%s' line %d, leading to '%s'", filename, lineCount, code))
-					}
-
-				} else if strings.HasPrefix(component, "domain=") {
-					domain := component[7:]
-					if !contains(*domains, idToTxt(domain)) {
-						abort("build.go", 160, fmt.Sprintf("Link leading to inexistent domain... File '%s' line %d, leading to '%s'", filename, lineCount, domain))
-					}
-				} else if strings.HasPrefix(component, "http") {
-					continue
-				} else {
-					abort(filename, lineCount, fmt.Sprintf("Incorrectly formatted link '%s'", ln))
-				}
-			}
+		// Check consistency of link.
+		_, err := linksAreConsistent(ln, domains, layers, codes)
+		if err != nil {
+			abort(filename, lineCount, err.Error())
 		}
+
 	}
 	if lineCount < 1 {
 		warn(fmt.Sprintf("File '%s' appears to be empty.", filename))
