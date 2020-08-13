@@ -9,6 +9,8 @@ import (
 	"os"
 	"strings"
 
+	scheme "github.com/buildings-for-people/coding_scheme_object"
+	scheme_pkg "github.com/buildings-for-people/coding_scheme_object"
 	"gitlab.com/golang-commonmark/markdown"
 )
 
@@ -50,43 +52,13 @@ func listMDFiles(dirname string) ([]string, error) {
 	return ret, nil
 }
 
-func toID(ln string) string {
-	ln = strings.TrimSpace(ln)
-	ln = strings.ToLower(ln)
-	ln = strings.Join(strings.Split(ln, " "), "_")
-	return ln
-}
-
-func toFilename(ln string) string {
-	return fmt.Sprintf("%s.md", toID(ln))
-}
-
-func filenameToTxt(ln string) string {
-	ln = idToTxt(ln)
-	ln = ln[0 : len(ln)-3]
-	return ln
-}
-
-func idToTxt(ln string) string {
-	return strings.Join(strings.Split(ln, "_"), " ")
-}
-
-func contains(slice []string, s string) bool {
-	for _, v := range slice {
-		if v == s {
-			return true
-		}
-	}
-	return false
-}
-
-func linksAreConsistent(ln string, domains *[]string, layers *[]string, codes *[]string) (bool, error) {
+func linksAreConsistent(ln string, scheme *scheme_pkg.Scheme) error {
 
 	// See if we are expecting some sort of link.
 	// if not, then it IS consistent.
 	openSquare := strings.Index(ln, "[")
 	if openSquare < 0 {
-		return true, nil
+		return nil
 	}
 
 	// Otherwise, remove anything before the square bracket... the link
@@ -95,18 +67,18 @@ func linksAreConsistent(ln string, domains *[]string, layers *[]string, codes *[
 	// Then, we expect to find a closeSquare
 	closeSquare := strings.Index(ln, "]")
 	if closeSquare < 0 {
-		return false, errors.New("expecting ']' in link")
+		return errors.New("expecting ']' in link")
 	}
 	// Then, an open round
 	openRound := strings.Index(ln, "(")
 	if openRound < 0 {
-		return false, errors.New("expecting '(' in link")
+		return errors.New("expecting '(' in link")
 	}
 
 	// Then, an closed round
 	closedRound := strings.Index(ln, ")")
 	if closedRound < 0 {
-		return false, errors.New("expecting ')' in link")
+		return errors.New("expecting ')' in link")
 	}
 
 	// If all that is there, check consistency of link.
@@ -118,32 +90,41 @@ func linksAreConsistent(ln string, domains *[]string, layers *[]string, codes *[
 	for _, component := range object {
 		if strings.HasPrefix(component, "layer=") {
 			layer := component[6:]
-			if !contains(*layers, idToTxt(layer)) {
-				return false, fmt.Errorf("link leading to inexistent layer '%s'", layer)
+			layerName := scheme_pkg.IDToTxt(layer)
+
+			if !scheme.HasLayer(layerName) {
+				return fmt.Errorf("link leading to inexistent layer '%s'", layerName)
 			}
 		} else if strings.HasPrefix(component, "code=") {
 			code := component[5:]
-			if !contains(*codes, idToTxt(code)) {
-				return false, fmt.Errorf("link leading to inexistent code '%s'", code)
+			codeName := scheme_pkg.IDToTxt(code)
+			if !scheme.HasCode(codeName) {
+				return fmt.Errorf("link leading to inexistent code '%s'", code)
 			}
 
-		} else if strings.HasPrefix(component, "domain=") {
-			domain := component[7:]
-			if !contains(*domains, idToTxt(domain)) {
-				return false, fmt.Errorf("link leading to inexistent domain '%s'", domain)
-			}
 		} else if strings.HasPrefix(component, "http") {
 			continue
 		} else {
-			return false, fmt.Errorf("incorrectly formatted link '%s'", ln)
+			return fmt.Errorf("incorrectly formatted link '%s'", ln)
 		}
+
+		/*
+			// LINKS TO DOMAINS ARE NOT ALLOWED
+			else if strings.HasPrefix(component, "domain=") {
+				domain := component[7:]
+				domainName := scheme_pkg.IDToTxt(domain)
+				if !scheme.IsValidDomain(domainName) {
+					return fmt.Errorf("link leading to inexistent domain '%s'", domain)
+				}
+			}
+		*/
 	}
 
-	return linksAreConsistent(afterLink, domains, layers, codes)
+	return linksAreConsistent(afterLink, scheme) //domains, layers, codes)
 
 }
 
-func checkDescription(filename string, domains *[]string, layers *[]string, codes *[]string) string {
+func checkDescription(filename string, scheme *scheme_pkg.Scheme) string { //domains *[]string, layers *[]string, codes *[]string) string {
 	// Open file
 	file, err := os.Open(filename)
 	defer file.Close()
@@ -164,13 +145,13 @@ func checkDescription(filename string, domains *[]string, layers *[]string, code
 			ln = ln[2:]
 			ln = strings.TrimSpace(ln)
 
-			expectedFileName := toFilename(ln)
+			expectedFileName := scheme_pkg.TxtToFilename(ln)
 			expectedFileName = expectedFileName[0 : len(expectedFileName)-3]
 
 			// compare name of file with that line.
 			aux := strings.Split(ln, "/")
 			justName := aux[len(aux)-1]
-			if expectedFileName != toID(justName) {
+			if expectedFileName != scheme_pkg.TxtToID(justName) {
 				abort(filename, lineCount, fmt.Sprintf("Title ('%s') does not match filename ('%s')", expectedFileName, justName))
 			}
 			continue
@@ -179,7 +160,7 @@ func checkDescription(filename string, domains *[]string, layers *[]string, code
 		d += (ln + "\n")
 
 		// Check consistency of link.
-		_, err := linksAreConsistent(ln, domains, layers, codes)
+		err := linksAreConsistent(ln, scheme)
 		if err != nil {
 			abort(filename, lineCount, err.Error())
 		}
@@ -193,126 +174,31 @@ func checkDescription(filename string, domains *[]string, layers *[]string, code
 
 }
 
-func checkDomainFile(filename string, foundLayers *[]string, foundCodes *[]string, scheme *scheme) {
-
-	warnedCodes := make([]string, 0)
-	warnedLayers := make([]string, 0)
-
-	// Open file
-	domainFile, err := os.Open(fmt.Sprintf("./domains/%s", filename))
-	defer domainFile.Close()
-	if err != nil {
-		abort("build.go", 187, err.Error())
-	}
-
-	domainName := filenameToTxt(filename)
-	currentLayer := ""
-
-	// scan all lines
-	lineCount := 0
-	scanner := bufio.NewScanner(domainFile)
-	for scanner.Scan() {
-		lineCount++
-		// clean the line
-		ln := strings.TrimSpace(scanner.Text())
-		ln = strings.ToLower(ln)
-
-		if ln == "" {
-			continue
-		} else if strings.HasPrefix(ln, "# ") {
-			// Domain name...
-			ln = ln[2:]
-			ln = strings.TrimSpace(ln)
-
-			expectedFileName := toFilename(ln)
-
-			// compare name of file with that line.
-			if expectedFileName != filename {
-				abort(filename, lineCount, fmt.Sprintf("Domain name ('%s') does not match filename ('%s')", ln, filename))
-			}
-
-		} else if strings.HasPrefix(ln, "## ") {
-			// Layer name...
-			ln = ln[3:]
-			ln = strings.TrimSpace(ln)
-
-			if !contains(*foundLayers, ln) {
-				*foundLayers = append(*foundLayers, ln)
-			}
-
-			// check that file is there.
-			layerFileName := fmt.Sprintf("./layers/%s", toFilename(ln))
-
-			if !fileExists(layerFileName) && !contains(warnedLayers, ln) {
-				warnedLayers = append(warnedLayers, ln)
-				warn(fmt.Sprintf("File '%s' is not there", layerFileName))
-			}
-
-			// Update current layer name
-			currentLayer = ln
-
-		} else if strings.HasPrefix(ln, "* ") {
-			// Code...
-			ln = ln[2:]
-			ln = strings.TrimSpace(ln)
-
-			if !contains(*foundCodes, ln) {
-				*foundCodes = append(*foundCodes, ln)
-			}
-
-			// check that there is a file about that.
-			codeFileName := fmt.Sprintf("./codes/%s", toFilename(ln))
-
-			if !fileExists(codeFileName) && !contains(warnedCodes, ln) {
-				warnedCodes = append(warnedCodes, ln)
-				warn(fmt.Sprintf("File '%s' is not there", codeFileName))
-			}
-
-			// If all good, allocate the code.
-			if currentLayer == "" {
-				abort(filename, lineCount, fmt.Sprintf("Code '%s' does not appear to be allocated to a layer", ln))
-			}
-			layer, wasThere := scheme.getLayer(currentLayer)
-			if !wasThere {
-				warn(fmt.Sprintf("Allocating layer '%s', found in domain '%s'... it should have been there already", currentLayer, domainName))
-			}
-			code, _ := layer.getCode(ln)
-
-			// Should we check if it is there?
-			code.Domains = append(code.Domains, domainName)
-		} else {
-			abort(filename, lineCount, fmt.Sprintf("Unexpected content '%s'", ln))
-		}
-
-	} // end iterating file lines
-}
-
 func main() {
 
-	var domains = []string{"acoustic", "air quality", "coolness", "daylight", "warmness"}
-
-	foundLayers := make([]string, 0)
-	foundCodes := make([]string, 0)
-
-	scheme := newScheme()
-	codesDescriptions := make(map[string]string)
-	layersDescriptions := make(map[string]string)
+	scheme := scheme.NewStandardScheme()
 
 	// Go through each domain, checking that
 	// files exist (warning if they do not)
-	// and taking note of all the layers and codes
-	// found in such files
-	domainFiles, err := listMDFiles("./domains")
+	// and taking note of all the layers and codes found in such files
+	domainsDir := "./domains"
+	domainFiles, err := listMDFiles(domainsDir)
 	if err != nil {
 		abort("build.go", 289, err.Error())
 	}
 
 	for _, filename := range domainFiles {
-		if !contains(domains, filenameToTxt(filename)) {
-			warn(fmt.Sprintf("File './%s' was not expected", filename))
+		domainName := scheme_pkg.FilenameToTxt(filename)
+		if !scheme.IsValidDomain(domainName) {
+			abort("build.go", 193, fmt.Sprintf("File './%s' (domain '%s') was not expected", filename, domainName))
 		}
-		checkDomainFile(filename, &foundLayers, &foundCodes, &scheme)
+		fullPath := fmt.Sprintf("%s/%s", domainsDir, filename)
+		err := scheme.ReadDomainFile(fullPath, true)
+		if err != nil {
+			abort("build.go", 197, err.Error())
+		}
 	}
+
 	// Create output directory if it does not exist.
 	outdir := "./dist"
 	if _, err := os.Stat(outdir); os.IsNotExist(err) {
@@ -322,33 +208,48 @@ func main() {
 	// print the scheme as JSON
 	j, e := json.Marshal(scheme)
 	if e != nil {
-		abort("build.go", 307, e.Error())
+		abort("build.go", 207, e.Error())
 	}
 	schemeFile := fmt.Sprintf("%s/scheme.json", outdir)
 	e = ioutil.WriteFile(schemeFile, j, 0644)
 	if err != nil {
-		abort("build.go", 312, e.Error())
+		abort("build.go", 212, e.Error())
 	}
 
-	// Go through codes, checking that there are no files
-	// that do not belong.
-	codeFiles, err := listMDFiles("./codes")
+	// Go through code files, checking that there are no files
+	// that do not belong;
+	codesDescriptions := make(map[string]string)
+	codesDir := "./codes"
+
+	codeFiles, err := listMDFiles(codesDir)
 	if err != nil {
 		abort("build.go", 163, err.Error())
 	}
 
 	for _, filename := range codeFiles {
-		codeName := filenameToTxt(filename)
+		codeName := scheme_pkg.FilenameToTxt(filename)
 
 		// Check if we were expecting this file
-		if !contains(foundCodes, codeName) {
-			warn(fmt.Sprintf("File './codes/%s' was not expected (code '%s')", filename, codeName))
+		if !scheme.HasCode(codeName) {
+			warn(fmt.Sprintf("File '%s/%s' was not expected (codeName '%s')", codesDir, filename, codeName))
 		}
 
 		// check content of the file
-		html := checkDescription(fmt.Sprintf("./codes/%s", filename), &domains, &foundLayers, &foundCodes)
-		codesDescriptions[toID(codeName)] = html
+		html := checkDescription(fmt.Sprintf("%s/%s", codesDir, filename), &scheme)
+		codesDescriptions[scheme_pkg.TxtToID(codeName)] = html
 	}
+
+	// Then check that all the codes have files.
+
+	contains := func(slice []string, s string) bool {
+		for _, v := range slice {
+			if v == s {
+				return true
+			}
+		}
+		return false
+	}
+
 	// Print the codes description as JSON
 	j, e = json.Marshal(codesDescriptions)
 	if e != nil {
@@ -363,21 +264,24 @@ func main() {
 	////////////
 	// Now, the same but with layers
 	///////////
-	layerFiles, err := listMDFiles("./layers")
+
+	layersDescriptions := make(map[string]string)
+	layersDir := "./layers"
+	layerFiles, err := listMDFiles(layersDir)
 	if err != nil {
 		abort("build.go", 350, err.Error())
 	}
 
 	for _, filename := range layerFiles {
-		layerName := filenameToTxt(filename)
+		layerName := scheme_pkg.FilenameToTxt(filename)
 
 		// Check if we were expecting this file
-		if !contains(foundLayers, layerName) {
-			warn(fmt.Sprintf("File './layers/%s' was not expected (name '%s')", filename, layerName))
+		if !scheme.HasLayer(layerName) {
+			warn(fmt.Sprintf("File '%s/%s' was not expected (name '%s')", layersDir, filename, layerName))
 		}
 
-		html := checkDescription(fmt.Sprintf("./layers/%s", filename), &domains, &foundLayers, &foundCodes)
-		layersDescriptions[toID(layerName)] = html
+		html := checkDescription(fmt.Sprintf("%s/%s", layersDir, filename), &scheme) // &domains, &foundLayers, &foundCodes)
+		layersDescriptions[scheme_pkg.TxtToID(layerName)] = html
 
 	}
 
@@ -390,6 +294,32 @@ func main() {
 	e = ioutil.WriteFile(layersFile, j, 0644)
 	if err != nil {
 		abort("build.go", 374, e.Error())
+	}
+
+	// Check which files are not there.
+
+	warnedCodes := []string{}
+	warnedLayers := []string{}
+	for _, layer := range scheme.Layers {
+
+		layerFileName := fmt.Sprintf("%s/%s", layersDir, scheme_pkg.TxtToFilename(layer.Name))
+
+		if !fileExists(layerFileName) {
+			warn(fmt.Sprintf("File '%s' is not there", layerFileName))
+			if !contains(warnedLayers, layer.Name) {
+				warnedCodes = append(warnedCodes, layer.Name)
+			}
+		}
+		for _, code := range layer.Codes {
+			filename := fmt.Sprintf("%s/%s", codesDir, scheme_pkg.TxtToFilename(code.Name))
+
+			if !fileExists(filename) {
+				warn(fmt.Sprintf("File '%s' is not there", filename))
+				if !contains(warnedCodes, code.Name) {
+					warnedCodes = append(warnedCodes, code.Name)
+				}
+			}
+		}
 	}
 
 }

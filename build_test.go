@@ -1,75 +1,59 @@
 package main
 
-import "testing"
+import (
+	"testing"
+
+	scheme_pkg "github.com/buildings-for-people/coding_scheme_object"
+)
 
 func TestLinksAreConsistent(t *testing.T) {
 
-	ln := "123 456"
-	domains := []string{"domain 1", "domain 2", "domain 3"}
-	layers := []string{"layer 1", "layer 2"}
-	codes := []string{"code 1", "code 2", "code 3", "code 4"}
+	var s scheme_pkg.Scheme
 
-	areConsistent, err := linksAreConsistent(ln, &domains, &layers, &codes)
-	if !areConsistent {
-		t.Error()
-		t.FailNow()
+	err := s.ReadDomainFile("test_data/domain_1.md", false)
+	if err != nil {
+		t.Error(err.Error())
 	}
+
+	ln := "123 456"
+
+	err = linksAreConsistent(ln, &s)
+
 	if err != nil {
 		t.Error(err.Error())
 		t.FailNow()
 	}
 
 	ln = "123 456 [auto](layer=layer_1)"
-	areConsistent, err = linksAreConsistent(ln, &domains, &layers, &codes)
+	err = linksAreConsistent(ln, &s)
 	if err != nil {
 		t.Error(err.Error())
 		t.FailNow()
 	}
-	if !areConsistent {
-
-		t.Error()
-		t.FailNow()
-	}
 
 	ln = "123 456 ([auto](layer=layer_1))"
-	areConsistent, err = linksAreConsistent(ln, &domains, &layers, &codes)
-	if !areConsistent {
-		t.Error()
-		t.FailNow()
-	}
+	err = linksAreConsistent(ln, &s)
 	if err != nil {
 		t.Error(err.Error())
 		t.FailNow()
 	}
 
 	ln = "123 456 ([auto](layer=layer_1))  [auto](layer=layer_1)"
-	areConsistent, err = linksAreConsistent(ln, &domains, &layers, &codes)
-	if !areConsistent {
-		t.Error()
-		t.FailNow()
-	}
+	err = linksAreConsistent(ln, &s)
 	if err != nil {
 		t.Error(err.Error())
 		t.FailNow()
 	}
 
 	ln = "123 456 ([auto](layer=layer_1))  [auto](layer=layer_7)"
-	areConsistent, err = linksAreConsistent(ln, &domains, &layers, &codes)
-	if areConsistent {
-		t.Error()
-		t.FailNow()
-	}
+	err = linksAreConsistent(ln, &s)
 	if err == nil {
 		t.Error("Expecting non consistency")
 		t.FailNow()
 	}
 
 	ln = "123 456 ([auto](layer=layer_7))  [auto](layer=layer_1)"
-	areConsistent, err = linksAreConsistent(ln, &domains, &layers, &codes)
-	if areConsistent {
-		t.Error()
-		t.FailNow()
-	}
+	err = linksAreConsistent(ln, &s)
 	if err == nil {
 		t.Error("Expecting non consistency")
 		t.FailNow()
