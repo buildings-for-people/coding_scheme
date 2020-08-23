@@ -43,6 +43,8 @@
 
 *  dust
 
+* thermal insulation
+
 
 
 
@@ -96,6 +98,8 @@
 *  effective and simple systems
 
 *  passive design
+
+* will be over soon
 
 
 

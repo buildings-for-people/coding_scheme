@@ -1,0 +1,31 @@
+WARNING: File './codes/coolness_vs_warmness.md' appears to be empty.
+WARNING: File './codes/increased_maintenance_and_reduced_durability.md' appears to be empty.
+WARNING: File './codes/neighbourhood_demographics.md' appears to be empty.
+WARNING: File './codes/sensitivity_to_odours_and_dust.md' is not there
+WARNING: File './codes/characteristics_of_the_surroundings.md' is not there
+WARNING: File './codes/neighbourhood_characteristics.md' is not there
+WARNING: File './codes/greenery_and_water_in_the_surroundings.md' is not there
+WARNING: File './codes/materials_perceived_as_humid.md' is not there
+WARNING: File './codes/awareness_of_air_pollution.md' is not there
+WARNING: File './codes/cleanability_of_the_space.md' is not there
+WARNING: File './codes/dust.md' is not there
+WARNING: File './codes/thermal_mass.md' is not there
+WARNING: File './codes/number_of_floors.md' is not there
+WARNING: File './codes/exposure_to_wind.md' is not there
+WARNING: File './codes/durability_of_materials.md' is not there
+WARNING: File './codes/breezes.md' is not there
+WARNING: File './codes/relative_humidity.md' is not there
+WARNING: File './codes/mean_radiant_temperature.md' is not there
+WARNING: File './codes/cool_air_available_when_opening_windows.md' is not there
+WARNING: File './codes/sound_of_nature.md' is not there
+WARNING: File './codes/privacy.md' is not there
+WARNING: File './codes/silence.md' is not there
+WARNING: File './codes/odours.md' is not there
+WARNING: File './codes/bugs.md' is not there
+WARNING: File './codes/air_quality_vs_acoustic_performance.md' is not there
+WARNING: File './codes/full_silence_vs_sounds_of_nature.md' is not there
+WARNING: File './codes/openness_of_the_space.md' is not there
+WARNING: File './codes/sense_of_community_vs_acoustic_performance.md' is not there
+WARNING: File './codes/location.md' is not there
+WARNING: File './codes/light_from_outside.md' is not there
+WARNING: File './codes/will_be_over_soon.md' is not there
