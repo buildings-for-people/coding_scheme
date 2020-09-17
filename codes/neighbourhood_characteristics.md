@@ -14,4 +14,5 @@ the way the neighbourhood is perceived by the people who live in it.
 
 This code, together with [neighbourhood demographics](code=neighbourhood_demographics)
 describe the location at a neighbourhood scale. Specifically, while [demographics](code=neighbourhood_demographics)
-describes the human factors (e.g. people are quiet, old, young, etc.),  this code describes the more physical factors.
+describes the human factors (e.g. people are quiet, old, young, etc.),  this code describes the more physical factors. 
+Also, the [site characteristics](code=site_characteristics) describe the location at a smaller scale.

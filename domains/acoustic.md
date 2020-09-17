@@ -16,23 +16,23 @@
 
 ## Environmental cues
 
-* characteristics of the surroundings
+* site characteristics
 
-*  proximity to neighbours
+* proximity to neighbours
 
-*  pets
+* pets
 
-*  doors between spaces
+* doors between spaces
 
-*  acoustic insulation
+* acoustic insulation
 
-*  neighbourhood characteristics
+* neighbourhood characteristics
 
-*  streets nearby
+* streets nearby
 
-*  size of the space
+* size of the space
 
-*  neighbourhood demographics
+* neighbourhood demographics
 
 
 

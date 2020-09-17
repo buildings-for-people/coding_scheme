@@ -9,5 +9,5 @@ the impression of it being properly illuminated.
 
 As to what do people mean by "decent size" and "lots of windows",
 we don't know. It is possible that this will depend on the 
-[views](code=views), the [surroundings](code=characteristics_of_the_surroundings),
+[views](code=views), the [site](code=site_characteristics),
 and perhaps some other factors.

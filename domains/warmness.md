@@ -37,7 +37,7 @@
 
 * size of the space
 
-* characteristics of the surroundings
+* site characteristics
 
 * heating and cooling system
 
@@ -49,7 +49,7 @@
 
 * materials that feel warm
 
-* condensation
+* condensation and mould
 
 
 

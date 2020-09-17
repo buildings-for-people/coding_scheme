@@ -23,7 +23,7 @@
 
 * colour of the space
 
-* characteristics of the surroundings
+* site characteristics
 
 
 

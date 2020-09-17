@@ -1,10 +1,4 @@
-WARNING: File './codes/coolness_vs_warmness.md' appears to be empty.
-WARNING: File './codes/increased_maintenance_and_reduced_durability.md' appears to be empty.
-WARNING: File './codes/neighbourhood_demographics.md' appears to be empty.
-WARNING: File './codes/sensitivity_to_odours_and_dust.md' is not there
-WARNING: File './codes/characteristics_of_the_surroundings.md' is not there
-WARNING: File './codes/neighbourhood_characteristics.md' is not there
-WARNING: File './codes/greenery_and_water_in_the_surroundings.md' is not there
+WARNING: File './codes/condensation_and_mould.md' is not there
 WARNING: File './codes/materials_perceived_as_humid.md' is not there
 WARNING: File './codes/awareness_of_air_pollution.md' is not there
 WARNING: File './codes/cleanability_of_the_space.md' is not there

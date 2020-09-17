@@ -13,7 +13,7 @@
 
 ## Environmental cues
 
-*  greenery and water in the surroundings
+* condensation and mould
 
 *  streets nearby
 
@@ -23,13 +23,15 @@
 
 *  availability of windows and skylights
 
+* ventilation system
+
 *  doors between spaces
 
 *  materials perceived as humid
 
 *  awareness of air pollution
 
-*  characteristics of the surroundings
+*  site characteristics
 
 *  neighbourhood characteristics
 
@@ -38,8 +40,6 @@
 *  proximity to neighbours
 
 *  cleanability of the space
-
-*  condensation
 
 *  dust
 
@@ -55,6 +55,8 @@
 *  air temperature
 
 *  relative humidity
+
+*  exposure to solar radiation
 
 
 

@@ -11,6 +11,8 @@
 
 *  thermal preference
 
+* times of occupancy
+
 
 
 ## Objective indoor climatic factors 
@@ -37,9 +39,7 @@
 
 *  size of the space
 
-*  characteristics of the surroundings
-
-*  greenery and water in the surroundings
+*  site characteristics
 
 *  heating and cooling system
 
@@ -78,6 +78,8 @@
 *  cleanliness of the space
 
 *  bugs
+
+
 
 
 ## Expected outcomes
