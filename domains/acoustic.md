@@ -46,13 +46,11 @@
 
 * loudness
 
-* sound of nature
-
 * bothering others
 
 * privacy
 
-* silence
+* the sound of silence
 
 
 ## Trade-offs

@@ -1,8 +1,6 @@
 # Coolness
 
 
-
-
 ## Internal elements 
 
 *  household composition
@@ -26,8 +24,6 @@
 *  breezes
 
 *  mean radiant temperature
-
-*  cool air available when opening windows
 
 *  relative humidity
 
@@ -55,11 +51,7 @@
 
 *  colour of the space
 
-*  number of floors
-
-*  exposure to wind
-
-*  durability of materials
+*  floor number
 
 
 
@@ -76,9 +68,6 @@
 *  feeling of confinement
 
 *  cleanliness of the space
-
-*  bugs
-
 
 
 
@@ -118,11 +107,13 @@
 
 *  safety
 
-*  light from outside
+*  light pollution
 
 *  utility bills
 
+*  exposure to wind
 
+*  bugs
 
 
 ## Comfort
