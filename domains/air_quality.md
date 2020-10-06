@@ -89,8 +89,6 @@
 
 *  air quality vs acoustic performance
 
-*  avoid the use of part of the dwelling
-
 *  increased maintenance and reduced durability
 
 

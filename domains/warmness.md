@@ -83,8 +83,6 @@
 
 ## Trade-offs 
 
-* avoid the use of part of the dwelling
-
 * coolness vs warmness
 
 * utility bills

@@ -58,8 +58,6 @@
 
 *  air quality vs acoustic performance
 
-*  avoid the use of part of the dwelling
-
 *  thermal comfort vs acoustic performance
 
 *  full silence vs sounds of nature

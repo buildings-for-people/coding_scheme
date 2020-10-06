@@ -65,8 +65,6 @@
 
 ## Trade-offs 
 
-* avoid the use of part of the dwelling
-
 * loss of privacy
 
 * loss of views
