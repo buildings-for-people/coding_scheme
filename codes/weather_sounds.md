@@ -1,8 +1,6 @@
-
 # weather sounds
 
-Perceiving the sound of the exterior world, particularly the 
-weather, can make people feel expose to it. The sound of the 
-rain on the windows might be pleasant for people, but only if 
-they know that their windows will be able to keep all that
-rain out.
+The amount of noise or sound from the exterior—e.g. rain, hail, wind—seems 
+to influence the perception of comfort. This appears to be related to 
+[expected outcomes](layer=expected_outcomes); specifically, to 
+[the fear of the envelope failing](code=systems_that_do_not_fail).

@@ -48,7 +48,7 @@
 
 * bothering others
 
-* privacy
+* acoustic privacy
 
 * the sound of silence
 

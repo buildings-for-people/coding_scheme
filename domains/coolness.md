@@ -99,7 +99,7 @@
 
 *  thermal comfort vs acoustic performance
 
-*  loss of privacy
+*  loss of visual privacy
 
 *  loss of views
 

@@ -30,5 +30,5 @@ less unpleasant. This is highly related to the
 [expected outcomes](layer=expected_outcomes). 
 
 Toilet and pipes noises, on their part, are likely to contribute 
-to a perception of reduced [privacy](code=privacy). Finally, noises that come from the house itself are interpreted as an 
+to a perception of reduced [acoustic privacy](code=acoustic_privacy). Finally, noises that come from the house itself are interpreted as an 
 indicator of wear and tear, and therefore are unpleasant. 

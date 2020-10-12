@@ -65,7 +65,7 @@
 
 ## Trade-offs 
 
-* loss of privacy
+* loss of visual privacy
 
 * loss of views
 
