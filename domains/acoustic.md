@@ -12,6 +12,8 @@
 
 * lifestyle
 
+* times of occupancy
+
 
 
 ## Environmental cues
@@ -26,13 +28,14 @@
 
 * acoustic insulation
 
-* neighbourhood characteristics
-
 * streets nearby
 
 * size of the space
 
 * neighbourhood demographics
+
+* neighbourhood characteristics
+
 
 
 
@@ -40,11 +43,12 @@
 
 ## Objective indoor climatic factors
 
+* reverberation
 
 
 ## Perceptions
 
-* loudness
+* loudness vs origin
 
 * bothering others
 
@@ -52,45 +56,45 @@
 
 * the sound of silence
 
+* sense of community
+
 
 ## Trade-offs
 
 
-*  air quality vs acoustic performance
+* air quality vs acoustic performance
 
-*  thermal comfort vs acoustic performance
+* thermal comfort vs acoustic performance
 
-*  full silence vs sounds of nature
+* full silence vs sounds of nature
 
-*  loss of views
+* loss of views
 
-*  openness of the space
+* openness of the space
 
-*  safety
+* safety
 
-*  sense of community vs acoustic performance
-
-*  location
+* location
 
 
 
 ## Expected outcomes
 
-*  will be over soon
+* will be over soon
 
-*  passive design
+* passive design
 
-*  effective and simple systems
+* effective and simple systems
 
-*  systems that do not fail
+* systems that do not fail
 
 
 
 ## Comfort
 
-*  freedom to do what you want wherever you want
+* freedom to do what you want wherever you want
 
-*  mental wellbeing
+* mental wellbeing
 
 
 

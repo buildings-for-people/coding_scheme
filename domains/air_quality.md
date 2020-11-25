@@ -3,11 +3,11 @@
 
 ## Internal elements
 
-*  sensitivity to odours and dust
+* sensitivity to odours and dust
 
-*  lifestyle
+* lifestyle
 
-*  household composition
+* household composition
 
 
 
@@ -15,33 +15,33 @@
 
 * condensation and mould
 
-*  streets nearby
+* streets nearby
 
-*  size of the space
+* size of the space
 
-*  colour of the space
+* colour of the space
 
-*  availability of windows and skylights
+* availability of windows and skylights
 
 * ventilation system
 
-*  doors between spaces
+* doors between spaces
 
-*  materials perceived as humid
+* materials perceived as humid
 
-*  awareness of air pollution
+* awareness of air pollution
 
-*  site characteristics
+* site characteristics
 
-*  neighbourhood characteristics
+* neighbourhood characteristics
 
-*  pets
+* pets
 
-*  proximity to neighbours
+* proximity to neighbours
 
-*  cleanability of the space
+* cleanability of the space
 
-*  dust
+* dust and smoke
 
 * thermal insulation
 
@@ -50,13 +50,13 @@
 
 ## Objective indoor climatic factors
 
-*  breezes
+* breezes
 
-*  air temperature
+* air temperature
 
-*  relative humidity
+* relative humidity
 
-*  exposure to solar radiation
+* exposure to solar radiation
 
 
 
@@ -65,39 +65,41 @@
 
 ## Perceptions
 
-*  feeling of confinement
+* feeling of confinement
 
-*  cleanliness of the space
+* cleanliness of the space
 
-*  daylight sufficiency
+* daylight sufficiency
 
-*  bothering others
+* bothering others
 
-*  thermal sensation
+* thermal sensation
 
-*  odours
+* odours
 
 
 
 ## Trade-offs
 
-*  aesthetics
+* aesthetics
 
-*  nuisances and lack of safety
+* nuisances and lack of safety
 
-*  thermal comfort vs air quality
+* thermal comfort vs air quality
 
-*  air quality vs acoustic performance
+* air quality vs acoustic performance
 
-*  increased maintenance and reduced durability
+* increased maintenance and reduced durability
+
+* exposure to wind
 
 
 
 ## Expected outcomes
 
-*  effective and simple systems
+* effective and simple systems
 
-*  passive design
+* passive design
 
 * will be over soon
 
@@ -105,13 +107,14 @@
 
 
 
+
 ## Comfort
 
-*  freedom to do what you want wherever you want
+* freedom to do what you want wherever you want
 
-*  physical wellbeing
+* physical wellbeing
 
-*  mental wellbeing
+* mental wellbeing
 
 
 

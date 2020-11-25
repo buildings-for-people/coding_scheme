@@ -70,8 +70,6 @@
 
 ## Expected outcomes
 
-* comfort everywhere and all the time
-
 * systems that do not fail
 
 * effective and simple systems

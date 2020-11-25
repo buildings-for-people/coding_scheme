@@ -52,15 +52,9 @@
 
 
 
-
-
-
 ## Expected outcomes
 
-
-
-* comfort everywhere and all the time
-
+* passive design
 
 
 ## Trade-offs 

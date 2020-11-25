@@ -3,11 +3,11 @@
 
 ## Internal elements 
 
-*  household composition
+* household composition
 
-*  lifestyle
+* lifestyle
 
-*  thermal preference
+* thermal preference
 
 * times of occupancy
 
@@ -15,43 +15,44 @@
 
 ## Objective indoor climatic factors 
 
-*  floor contact temperature
+* floor contact temperature
 
-*  exposure to solar radiation
+* exposure to solar radiation
 
-*  air temperature
+* air temperature
 
-*  breezes
+* breezes
 
-*  mean radiant temperature
+* mean radiant temperature
 
-*  relative humidity
+* relative humidity
+
 
 
 
 ## Environmental cues 
 
-*  orientation
+* orientation
 
-*  size of the space
+* size of the space
 
-*  site characteristics
+* site characteristics
 
-*  heating and cooling system
+* heating and cooling system
 
-*  thermal insulation
+* thermal insulation
 
-*  thermal mass
+* thermal mass
 
-*  affective attributes
+* affective attributes
 
-*  materials that feel warm
+* materials that feel warm
 
-*  availability of windows and skylights
+* availability of windows and skylights
 
-*  colour of the space
+* colour of the space
 
-*  floor number
+* floor number
 
 
 
@@ -59,67 +60,65 @@
 
 ## Perceptions
 
-*  daylight sufficiency
+* daylight sufficiency
 
-*  thermal sensation
+* thermal sensation
 
-*  sensation when entering a space
+* sensation when entering a space
 
-*  feeling of confinement
+* feeling of confinement
 
-*  cleanliness of the space
+* cleanliness of the space
 
 
 
 ## Expected outcomes
 
-*  comfort everywhere and all the time
+* effective and simple systems
 
-*  effective and simple systems
-
-*  passive design
+* passive design
 
 
 
 ## Trade-offs 
 
-*  nuisances and lack of safety
+* nuisances and lack of safety
 
-*  inappropriate clothing
+* inappropriate clothing
 
-*  aesthetics
+* aesthetics
 
-*  thermal comfort vs air quality
+* thermal comfort vs air quality
 
-*  increased maintenance and reduced durability
+* increased maintenance and reduced durability
 
-*  daylight vs thermal comfort
+* daylight vs thermal comfort
 
-*  coolness vs warmness
+* coolness vs warmness
 
-*  thermal comfort vs acoustic performance
+* thermal comfort vs acoustic performance
 
-*  loss of visual privacy
+* loss of visual privacy
 
-*  loss of views
+* loss of views
 
-*  safety
+* safety
 
-*  light pollution
+* light pollution
 
-*  utility bills
+* utility bills
 
-*  exposure to wind
+* exposure to wind
 
-*  bugs
+* bugs
 
 
 ## Comfort
 
-*  freedom to do what you want wherever you want
+* freedom to do what you want wherever you want
 
-*  physical wellbeing
+* physical wellbeing
 
-*  mental wellbeing
+* mental wellbeing
 
 
