@@ -57,6 +57,7 @@
 * passive design
 
 
+
 ## Trade-offs 
 
 * loss of visual privacy
