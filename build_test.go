@@ -10,7 +10,7 @@ func TestLinksAreConsistent(t *testing.T) {
 
 	var s scheme_pkg.Scheme
 
-	err := s.ReadDomainFile("test_data/domain_1.md", false)
+	err := s.ReadDomainFile("test_data/domain_1.md")
 	if err != nil {
 		t.Error(err.Error())
 	}
