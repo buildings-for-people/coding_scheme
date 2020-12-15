@@ -3,29 +3,29 @@
 
 ## Internal elements 
 
+* times of occupancy
+
+* dwelling typology
+
 * household composition
 
 * lifestyle
-
-* dwelling typology
 
 * thermal preference
 
 * budget
 
-* times of occupancy
-
 
 
 ## Objective indoor climatic factors 
 
-* air leakage
-
-* floor contact temperature
+* air temperature
 
 * exposure to solar radiation
 
-* air temperature
+* floor contact temperature
+
+* air leakage
 
 * bed temperature
 
@@ -33,23 +33,23 @@
 
 ## Environmental cues 
 
-* orientation
+* site characteristics
 
 * size of the space
 
-* site characteristics
+* orientation
 
-* heating and cooling system
+* condensation and mould
 
 * thermal insulation
 
-* protection from moisture
+* heating and cooling system
 
 * affective attributes
 
 * materials that feel warm
 
-* condensation and mould
+* protection from moisture
 
 * weather sounds
 
@@ -59,9 +59,9 @@
 
 * daylight sufficiency
 
-* thermal sensation
-
 * sensation when entering a space
+
+* thermal sensation
 
 
 

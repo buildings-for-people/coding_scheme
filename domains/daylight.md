@@ -12,18 +12,18 @@
 
 ## Environmental cues 
 
-
-* availability of windows and skylights
-
-* orientation
-
-* views
+* site characteristics
 
 * size of the space
 
+* orientation
+
 * colour of the space
 
-* site characteristics
+* availability of windows and skylights
+
+* views
+
 
 
 
@@ -36,19 +36,19 @@
 
 ## Perceptions
 
+* daylight sufficiency
+
 * sensation when entering a space
 
-* daylight sufficiency
+* feeling of confinement
+
+* cleanliness of the space
 
 * sense of connection with the exterior
 
 * attractiveness of the space
 
-* cleanliness of the space
-
 * glare
-
-* feeling of confinement
 
 
 
@@ -69,7 +69,6 @@
 * increased maintenance and reduced durability
 
 * utility bills
-
 
 * daylight vs thermal comfort
 

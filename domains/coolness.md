@@ -15,17 +15,17 @@
 
 ## Objective indoor climatic factors 
 
-* floor contact temperature
-
-* exposure to solar radiation
+* breezes
 
 * air temperature
 
-* breezes
+* relative humidity
+
+* exposure to solar radiation
+
+* floor contact temperature
 
 * mean radiant temperature
-
-* relative humidity
 
 
 

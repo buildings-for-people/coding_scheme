@@ -176,7 +176,34 @@ func checkDescription(filename string, scheme *scheme_pkg.Scheme) string { //dom
 
 func main() {
 
-	scheme := scheme.NewStandardScheme()
+	var scheme scheme.Scheme //:= scheme.NewEmptyScheme()
+
+	validDomains := []string{"acoustic", "air quality", "coolness", "daylight", "warmness"}
+
+	isValidDomain := func(domainName string) bool {
+		for _, domain := range validDomains {
+			if domain == domainName {
+				return true
+			}
+		}
+		return false
+	}
+
+	// This is how we set the right order for the
+	// layers... from Outside to Inside.
+	validLayers := []string{"internal elements", "environmental cues", "objective indoor climatic factors", "perceptions", "trade-offs", "expected outcomes", "comfort"}
+	isValidLayer := func(layerName string) bool {
+		for _, layer := range validLayers {
+			if layer == layerName {
+				return true
+			}
+		}
+		return false
+	}
+
+	for _, layerName := range validLayers {
+		scheme.GetLayer(layerName)
+	}
 
 	// Go through each domain, checking that
 	// files exist (warning if they do not)
@@ -184,19 +211,28 @@ func main() {
 	domainsDir := "./domains"
 	domainFiles, err := listMDFiles(domainsDir)
 	if err != nil {
-		abort("build.go", 289, err.Error())
+		abort("build.go", 196, err.Error())
 	}
 
 	for _, filename := range domainFiles {
 		domainName := scheme_pkg.FilenameToTxt(filename)
-		if !scheme.IsValidDomain(domainName) {
-			abort("build.go", 193, fmt.Sprintf("File './%s' (domain '%s') was not expected", filename, domainName))
+		if !isValidDomain(domainName) {
+			abort("build.go", 212, fmt.Sprintf("File './%s' (domain '%s') was not expected", filename, domainName))
 		}
+
 		fullPath := fmt.Sprintf("%s/%s", domainsDir, filename)
-		err := scheme.ReadDomainFile(fullPath, true)
+		err := scheme.ReadDomainFile(fullPath)
 		if err != nil {
-			abort("build.go", 197, err.Error())
+			abort("build.go", 207, err.Error())
 		}
+
+		// Check that all the layers are valid
+		for _, layer := range scheme.Layers {
+			if !isValidLayer(layer.Name) {
+				abort("build.go", 207, fmt.Sprintf("Unexpected layer '%s' in file '%s'", layer.Name, filename))
+			}
+		}
+
 	}
 
 	// Create output directory if it does not exist.
@@ -208,12 +244,12 @@ func main() {
 	// print the scheme as JSON
 	j, e := json.Marshal(scheme)
 	if e != nil {
-		abort("build.go", 207, e.Error())
+		abort("build.go", 220, e.Error())
 	}
 	schemeFile := fmt.Sprintf("%s/scheme.json", outdir)
 	e = ioutil.WriteFile(schemeFile, j, 0644)
 	if err != nil {
-		abort("build.go", 212, e.Error())
+		abort("build.go", 225, e.Error())
 	}
 
 	// Go through code files, checking that there are no files
@@ -223,7 +259,7 @@ func main() {
 
 	codeFiles, err := listMDFiles(codesDir)
 	if err != nil {
-		abort("build.go", 163, err.Error())
+		abort("build.go", 235, err.Error())
 	}
 
 	for _, filename := range codeFiles {
@@ -253,12 +289,12 @@ func main() {
 	// Print the codes description as JSON
 	j, e = json.Marshal(codesDescriptions)
 	if e != nil {
-		abort("build.go", 337, e.Error())
+		abort("build.go", 265, e.Error())
 	}
 	codesFile := fmt.Sprintf("%s/codes.json", outdir)
 	e = ioutil.WriteFile(codesFile, j, 0644)
 	if err != nil {
-		abort("build.go", 342, e.Error())
+		abort("build.go", 270, e.Error())
 	}
 
 	////////////
@@ -269,7 +305,7 @@ func main() {
 	layersDir := "./layers"
 	layerFiles, err := listMDFiles(layersDir)
 	if err != nil {
-		abort("build.go", 350, err.Error())
+		abort("build.go", 281, err.Error())
 	}
 
 	for _, filename := range layerFiles {
@@ -288,12 +324,12 @@ func main() {
 	// Print the layer description as JSON
 	j, e = json.Marshal(layersDescriptions)
 	if e != nil {
-		abort("build.go", 369, e.Error())
+		abort("build.go", 300, e.Error())
 	}
 	layersFile := fmt.Sprintf("%s/layers.json", outdir)
 	e = ioutil.WriteFile(layersFile, j, 0644)
 	if err != nil {
-		abort("build.go", 374, e.Error())
+		abort("build.go", 305, e.Error())
 	}
 
 	// Check which files are not there.

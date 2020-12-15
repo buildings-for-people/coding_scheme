@@ -3,11 +3,11 @@
 
 ## Internal elements
 
+* household composition
+
 * sensitivity to odours and dust
 
 * lifestyle
-
-* household composition
 
 
 

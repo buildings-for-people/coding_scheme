@@ -2,9 +2,9 @@
 
 ## Internal elements
 
-* dwelling typology
-
 * household composition
+
+* dwelling typology
 
 * love for music
 
@@ -45,7 +45,7 @@
 
 ## Objective indoor climatic factors
 
-* reverberation
+* acoustic absorption
 
 
 ## Perceptions
