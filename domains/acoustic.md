@@ -82,7 +82,7 @@
 
 ## Expected outcomes
 
-* will be over soon
+* temporary
 
 * passive design
 

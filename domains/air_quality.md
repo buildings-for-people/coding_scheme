@@ -101,7 +101,7 @@
 
 * passive design
 
-* will be over soon
+* temporary
 
 
 

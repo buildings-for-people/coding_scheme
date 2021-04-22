@@ -14,4 +14,4 @@ all the time in all the locations of the dwelling that they might visit. This sh
 or dwellings that are equipped with [effective and simple systems](code=effective_and_simple_systems) that allow fixing potentially uncomfortable situations and 
 [systems that do not fail](code=systems_that_do_not_fail). If none of these 
 three conditions are available, people might hope
-that the nuisances [will be over soon](code=will_be_over_soon).
+that the nuisances are [temporary](code=temporary).
