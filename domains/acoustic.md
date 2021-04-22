@@ -68,7 +68,7 @@
 
 * thermal comfort vs acoustic performance
 
-* full silence vs sounds of nature
+* complete silence vs sounds of nature
 
 * loss of views
 
