@@ -84,7 +84,7 @@
 
 * nuisances and lack of safety
 
-* inappropriate clothing
+* uncomfortable amount of clothing
 
 * aesthetics
 

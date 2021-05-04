@@ -1,4 +1,4 @@
-# inappropriate clothing
+# uncomfortable amount of clothing
 
 While people can feel warmer by wearing more layers of clothing, 
 they do not always do it happily. Sometimes people feel that they

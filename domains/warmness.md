@@ -91,7 +91,7 @@
 
 * energy efficiency
 
-* inappropriate clothing
+* uncomfortable amount of clothing
 
 * aesthetics
 
