@@ -1,5 +1,3 @@
 # the sound of silence
 
-While people often say that absolute silence is what they want, several people also reported that they like hearing natural sounds.
-
-So, the sound of silence is not absolutely quiet, but just natural and soothing.
+While, at first, people tend to say that absolute silence is what they want, it seems that they enjoy hearing *some* sounds. Consequently, the sound of silence is not *absolute* silence, but actually soothing—mostly natural—sounds.

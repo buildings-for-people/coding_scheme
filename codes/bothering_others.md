@@ -1,7 +1,7 @@
 # Bothering others
 
 The feeling of comfort is a state of the mind, and thus it is not 
-limited to physiological sensations or even to individual's own 
+limited to physiological sensations or even to a person's own 
 body. One example of this is how people worry about bothering 
 others. 
 

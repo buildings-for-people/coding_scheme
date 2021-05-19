@@ -1,7 +1,4 @@
 
 # cleanliness of the space
 
-Respondents often linked the amount of daylight in a space, 
-as well as its temperature, to the perception of cleanliness 
-of it. Hot places are perceived as unhygienic, while spaces 
-with plenty of natural light are perceived clean.
+People care about how clean the spaces they use are. This perception of cleanliness seems to be influenced by how well illuminanted the space is, by the perceived quality of its air, and by its temperature. Hot, humid, and dark places are perceived as unhygienic.

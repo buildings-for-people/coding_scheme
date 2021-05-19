@@ -1,4 +1,4 @@
 # air quality vs acoustic performance
 
-Opening windows allows cleaning the air in the home, but sometimes outside is noisy. While [ventilation systems](code=ventilation_system) 
-can potentially solve this problem, they can be noisy or can transmit noise, which can make them unpleasant.
+Opening windows allows cleaning a dwelling's air. However, because of the existence of external noise, people sometimes need to choose between tolerating an unpleasant acoustic situation (i.e., by opening the windows) and breathing what feels like unhealthy or polluted air (i.e., by keeping the windows closed). Moreover, even if [ventilation systems](code=ventilation_system) 
+can potentially solve this problem, they can be noisy or can transmit noise, ultimately offering a similar set of alternatives: to tolerate noise or to tolerate air that is not clean.

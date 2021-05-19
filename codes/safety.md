@@ -1,9 +1,9 @@
 # Safety
 
-People often like to open the windows, although that may 
-come with issues of safety. Leaving the windows open is not always
-a good idea.
+People often want to open the windows for ventilating or cooling their homes. However, 
+leaving the windows open is not always a good idea due to safety concerns (e.g., people can
+come in through the windows or people can fall out of them).
 
-Likewise, while it is common to like quiet homes, that can imply
-a lack of connection to family and neighbours which help feeling
-safe.
+Similarly, while it is common ti like quiet homes, a dwelling that is excessively quiet can
+make people feel disconnected from the other members of their household and, in consequence,
+make them feel unsafe.

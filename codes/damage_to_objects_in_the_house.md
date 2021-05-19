@@ -1,4 +1,3 @@
 # damage to objects in the house
 
-Getting natural light is great, but it can damage objects
-in the house.
+People like spaces with plenty of natural light. However, they know that solar radiation can damage objects in the dwelling.

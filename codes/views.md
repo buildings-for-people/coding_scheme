@@ -1,7 +1,7 @@
 # views
 
 The [availability of windows and skylights](code=availability_of_windows_and_skylights)
-not only provides daylight, but also views. This was identified 
+not only provides daylight but also views. This was identified 
 by some respondents, who argued that dwellings with good daylight also 
 have views. 
 

@@ -2,7 +2,8 @@
 
 Hopefully, homes should be robust enough to 
 consistently offer comfortable spaces for people. This implies, 
-for instance, that heaters should fail as little a possible; and 
+for instance, that heaters should fail as little as possible; and 
 if they fail, this event should not prevent the whole house 
-from being livable. Likewise, windows should consistently
-keep the cold and rain outside.
+from being liveable. In a similar manner, windows, doors, roofs, 
+and other architectural elements of the dwelling should perform
+appropriately in a consistent manner.

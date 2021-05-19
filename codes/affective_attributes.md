@@ -1,8 +1,3 @@
 # affective attributes
 
-The word warmness, especially in Spanish, seems to be strongly 
-associated with how welcoming and liveable a space is. Thus, within their descriptions of a 
-warm dwelling, people often mentioned elements that were, 
-apparently, not related to thermal comfort but to their
-aspirations and [lifestyle](code=lifestyle). These quotes
-have been gathered under Affective Attributes.
+When describing Warm and pleasantly cold (i.e., Cool) dwellings, respondents (predominantly those from Chile) mentioned attributes that seem to be more related to their aspirations and lifesteyle than to any truly Thermal factor. Specifically, elements that seem more related to how welcoming and livable a dwelling is.
